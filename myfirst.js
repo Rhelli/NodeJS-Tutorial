@@ -1,8 +1,10 @@
 const http = require('http');
-const dt = require('./dateTime');
+const fs = require('fs');
 
 http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/html' });
-  res.write('The data and time is currently: ' + dt.dateTime());
-  res.end();
+  fs.readFile('demofile1.html', (err, data) => {
+    res.writeHead(200, { 'Content-Type': 'text/html' });
+    res.write(data);
+    res.end();
+  });
 }).listen(3000);
